@@ -8,6 +8,9 @@ angular.module('fff', ['tastypieModule']).
   });
  
  
-function ListCtrl($scope, FoodOptions) {
-  $scope.food_options = FoodOptions.query();
+function ListCtrl($scope, $timeout, FoodOptions) {
+    $scope.food_options = FoodOptions.get();
+    setInterval(function(){
+        $scope.food_options = FoodOptions.get();
+    },5000);
 }
