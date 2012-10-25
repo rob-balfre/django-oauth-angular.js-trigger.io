@@ -7,5 +7,5 @@ class FoodResource(ModelResource):
     class Meta:
         queryset = FoodOption.objects.all()
         resource_name = 'food'
-        serializer = Serializer(formats=['jsonp'])
+        serializer = Serializer(formats=['jsonp', 'json'])
         authorization = Authorization()

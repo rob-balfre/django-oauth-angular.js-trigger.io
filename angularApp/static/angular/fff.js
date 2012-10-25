@@ -13,15 +13,27 @@ function ListCtrl($scope, $timeout, FoodOptions) {
     setInterval(function(){
         $scope.food_options = FoodOptions.get();
     },5000);
-    
 }
 
-function CreateCtrl($scope, FoodOptions){
+function CreateCtrl($scope, $http, FoodOptions){
     $scope.addOption = function() {
-        console.log($scope.optionText);
         FoodOptions.update(function() {
-            ({'name': $scope.optionText});
+            {name: $scope.optionText}
         });
         console.log({name: $scope.optionText});
+        
+        //$http.post('http://192.168.91.20/api/food/', {name: $scope.optionText}, withCredentials: true).success();
+        
+        
+                /*
+$.ajax({
+  type: 'POST',
+  url: 'http://192.168.91.20/api/food/',
+  data: '{"name":"'+$scope.optionText+'"}',
+  dataType: "application/json",
+  contentType: "application/json",
+  success: console.log('jquery worked')
+}); */
+        
     };
 }
