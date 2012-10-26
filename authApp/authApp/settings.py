@@ -130,6 +130,11 @@ XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
 XS_SHARING_ALLOWED_HEADERS = ['Content-Type']
 XS_SHARING_ALLOWED_CREDENTIALS = 'true'
 
+LOGIN_REDIRECT_URL = '/logged-in'
+
+#SOMEURL = '/logged-in?%s&%s' % (request.user, ApiKey.objects.get(user=request.user))
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

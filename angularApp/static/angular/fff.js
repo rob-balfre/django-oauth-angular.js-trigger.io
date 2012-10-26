@@ -6,34 +6,23 @@ angular.module('fff', ['tastypieModule']).
       when('/new', {controller:CreateCtrl, templateUrl:'add_option.html'}).
       otherwise({redirectTo:'/'});
   });
- 
- 
-function ListCtrl($scope, $timeout, FoodOptions) {
-    $scope.food_options = FoodOptions.get();
-    setInterval(function(){
-        $scope.food_options = FoodOptions.get();
-    },5000);
-}
+
+function ListCtrl($scope, $http, FoodOptions) {
+   $scope.food_options = FoodOptions.get();
+};
 
 function CreateCtrl($scope, $http, FoodOptions){
     $scope.addOption = function() {
-        FoodOptions.update(function() {
-            {name: $scope.optionText}
-        });
-        console.log({name: $scope.optionText});
-        
-        //$http.post('http://192.168.91.20/api/food/', {name: $scope.optionText}, withCredentials: true).success();
-        
-        
-                /*
-$.ajax({
-  type: 'POST',
-  url: 'http://192.168.91.20/api/food/',
-  data: '{"name":"'+$scope.optionText+'"}',
-  dataType: "application/json",
-  contentType: "application/json",
-  success: console.log('jquery worked')
-}); */
+        //$http.post('http://192.168.91.20/api/food/', {name: $scope.optionText}, {withCredentials: false});
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://192.168.91.20/api/food/?username=testy&api_key=32331180f4d70523597be5a027223a9cfaf90fdd',
+            data: '{"name":"'+$scope.optionText+'"}',
+            contentType: "application/json"
+            //dataType: 'json',
+            //processData: false
+        }).done(function(data) { console.log('sent: '+data) });
         
     };
 }
