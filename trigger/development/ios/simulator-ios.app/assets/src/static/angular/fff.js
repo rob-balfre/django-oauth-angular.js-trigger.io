@@ -16,25 +16,26 @@ function HomeCrtl($scope, $location) {
     //if connected attempt to login
     if (online === true) {
         $location.path('/sign-in');
-        
-        /* forge.tabs.openWithOptions({
-            url: 'http://192.168.1.103/accounts/twitter/login/',
-            pattern: 'http://192.168.1.103/auth/*'
-        }, function (data) {
-            //forge.logging.log(data.url);
-            $scope.$apply(function() {
-                $location.path('/list');
-                $scope.userCreds = data.url;
-            });
-        });*/
+    
     //else show connection error
     } else {
         $location.path('/no-connection');
     }
 };
 
-function SiginInCtrl() {
-    
+function SiginInCtrl($scope, $location) {
+    $scope.twitterSignIn = function() {
+        forge.tabs.openWithOptions({
+            url: 'http://192.168.91.20/accounts/twitter/login/',
+            pattern: 'http://192.168.91.20/auth/*'
+        }, function (data) {
+            //forge.logging.log(data.url);
+            $scope.$apply(function() {
+                $location.path('/list');
+                $scope.userCreds = data.url;
+            });
+        }); 
+    }
 };
 
 function ListCtrl($scope, $http, FoodOptions) {

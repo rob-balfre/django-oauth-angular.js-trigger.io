@@ -1,1 +1,35 @@
-html,body{background:#333;font-family:'Avenir';text-align:center}a{color:#fff;text-decoration:none}.box{display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-pack:center;-webkit-box-align:center}.sign-in-option{width:90px;height:90px}#twitter-sign-in{background:#2daae1}#activate{width:90px;height:90px;text-transform:uppercase;background:#282828;color:#333}
+html,
+body {
+  background: #333;
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+  text-align: center;
+  color: #fff;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.sign-in-container {
+  margin: 0 auto;
+  height: 450px;
+  width: 100%;
+  text-align: center;
+}
+.sign-in-container h1 {
+  display: block;
+  width: 100%;
+}
+.box {
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+.sign-in-option {
+  width: 90px;
+  height: 90px;
+}
+#twitter-sign-in {
+  background: #2daae1;
+}

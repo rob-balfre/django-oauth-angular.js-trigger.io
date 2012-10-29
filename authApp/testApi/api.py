@@ -9,6 +9,6 @@ class FoodResource(ModelResource):
         queryset = FoodOption.objects.all()
         resource_name = 'food'
         serializer = Serializer(formats=['jsonp', 'json'])
-        #authorization = Authorization()
-        #authentication = ApiKeyAuthentication()
+        authorization = Authorization()
+        authentication = ApiKeyAuthentication()
         trailing_slash = False

@@ -4,7 +4,7 @@ angular.module('tastypieModule', ['ngResource']).
         // try using sudo with port 80 (OSX default port) which removes the need for using it
         $http.defaults.useXDomain = true;
         
-        var FoodOptions = $resource('http://192.168.1.103/api/:type',
+        var FoodOptions = $resource('http://192.168.91.20/api/:type',
             {type: 'food', username: 'rob_balfre', api_key: '58ce21171b76da7755a7353313160867aeda1311'},
             {
                 get: {method: 'JSONP', params: { format: 'jsonp', callback:'JSON_CALLBACK'}},

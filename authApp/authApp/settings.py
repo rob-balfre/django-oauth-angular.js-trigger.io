@@ -132,6 +132,9 @@ XS_SHARING_ALLOWED_CREDENTIALS = 'true'
 
 LOGIN_REDIRECT_URL = '/logged-in'
 
+APPEND_SLASH = False
+TASTYPIE_ALLOW_MISSING_SLASH = True
+
 #SOMEURL = '/logged-in?%s&%s' % (request.user, ApiKey.objects.get(user=request.user))
 
 
