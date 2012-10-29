@@ -1,20 +1,16 @@
 {
-	"general": {
-	},
-	"ios": {
-		"profiles": {
-			"DEFAULT": {
-				"provisioning_profile": ""
-			}
-		}
-	},
-	"android": {
-		"sdk": "",
-		"profiles": {
-			"DEFAULT": {
-				"keystore": "",
-				"keyalias": ""
-			}
-		}
-	}
+  "general": {
+  },
+  "ios": {
+    "device": "3fac99aa344f58bc9d0c40450e20d670e5eb92d9",
+    "profiles": {
+      "DEFAULT": {
+        "provisioning_profile": "/Users/robertbalfre/webdev/django-oauth-angular.js-trigger.io/trigger/iOS_Team_Provisioning_Profile_.mobileprovision"
+      },
+      "release": {
+      }
+    }
+  },
+  "android": {
+  }
 }
