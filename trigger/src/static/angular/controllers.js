@@ -45,6 +45,11 @@ function ListCtrl($rootScope, $scope, $http, $location, apiCall) {
     $scope.addNew = function() {
         $location.path('/new');
     }
+    
+    $scope.sendVote = function (foodID) {
+        apiCall.post({type: 'vote', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")}, {'food_option': {'id': foodID}, 'user': {'username': localStorage.getItem("username")}});
+    }
+    
 };
 
 function CreateCtrl($scope, $http, apiCall){
