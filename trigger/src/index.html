@@ -6,7 +6,7 @@
 <link href="static/css/style.css" rel="stylesheet">
 </head>
 
-<body ng-view>
+<body ng-controller="MainAppCtrl">
     
     <div ng-view></div>
         
@@ -14,8 +14,10 @@
     <script src="static/angular/lib/angular.js"></script>
     <script src="static/angular/lib/angular-resource.js"></script>
     <script src="static/jquery/lib/jquery-latest.js"></script>
+    <script src="static/angular/lib/http-auth-interceptor.js"></script>
     <script src="static/angular/app.js"></script>
     <script src="static/angular/controllers.js"></script>
     <script src="static/angular/services.js"></script>
+    
   </body>
 </html>

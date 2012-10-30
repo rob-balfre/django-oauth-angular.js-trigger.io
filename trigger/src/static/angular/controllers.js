@@ -1,7 +1,5 @@
 'use strict';
 
-var loggedUser, apiKey;
-
 function HomeCrtl($scope, $location) {
     //check for connecton 
     var online = navigator.onLine;
@@ -15,6 +13,8 @@ function HomeCrtl($scope, $location) {
         $location.path('/no-connection');
     }
 };
+//HomeCrtl.$inject = [];
+
 
 function SiginInCtrl($scope, $location, apiCall) {
     $scope.twitterSignIn = function() {
@@ -25,19 +25,21 @@ function SiginInCtrl($scope, $location, apiCall) {
             //forge.logging.log(data.url);
             //$scope.$apply(function() {
                 $location.path('/list');
-                loggedUser = 'rob_balfre';
-                apiKey = '58ce21171b76da7755a7353313160867aeda1311';
+                localStorage.setItem("username", "rob_balfre");
+                localStorage.setItem("apiKey", "58ce21171b76da7755a7353313160867aeda1311");
+                
+                //loggedUser = 'rob_balfre';
+                //apiKey = '58ce21171b76da7755a7353313160867aeda1311';
             //});
         //}); 
     }
 };
 
-function ListCtrl($scope, $http, $location, apiCall) {
-    console.log(loggedUser);
-    $scope.food_options =  apiCall.get({username: loggedUser});
+function ListCtrl($rootScope, $scope, $http, $location, apiCall) {
+    $scope.food_options =  apiCall.get({username: localStorage.getItem("username")});
     
     $scope.testApi = function () {
-        apiCall.get({username: loggedUser});
+        apiCall.get({username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
     }
     
     $scope.addNew = function() {

@@ -6,8 +6,8 @@ angular.module('tastypieModule', ['ngResource']).
         // try using sudo with port 80 (OSX's default port) which removes the need for using it
         delete $http.defaults.headers.common['X-Requested-With'];
         
-        var apiCall = $resource('http://192.168.91.20/api/:type',
-            {type: 'food', username: '@userName', api_key: '58ce21171b76da7755a7353313160867aeda1311'},
+        var apiCall = $resource('http://192.168.91.20/api/v1/:type',
+            {type: 'food', username: '@userName', api_key: '@api_key'},
             {
                 get: {method: 'GET'},
                 post: {method: 'POST', headers: {'Content-Type': 'application/json'}}

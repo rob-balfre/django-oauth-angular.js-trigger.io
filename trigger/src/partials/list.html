@@ -1,7 +1,7 @@
 <h2>Options</h2>
 
 <ul>
-  <li ng-repeat="food_option in food_options.objects">{{food_option.name}}</li>
+  <li ng-repeat="food_option in food_options.objects">{{food_option.name}}{{food_option.votes}}</li>
 </ul>
 
 <a ng-click="testApi()">Test</a>
