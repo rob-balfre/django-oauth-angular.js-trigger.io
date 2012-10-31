@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 from tastypie.api import Api
-from testApi.api import FoodResource, VoteResource
+from testApi.api import FoodResource, VoteResource, UserResource, AvatarResource
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,6 +10,9 @@ admin.autodiscover()
 v1_api = Api(api_name='v1')
 v1_api.register(FoodResource())
 v1_api.register(VoteResource())
+v1_api.register(UserResource())
+v1_api.register(AvatarResource())
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -24,4 +28,11 @@ urlpatterns = patterns('',
     (r'^api/', include(v1_api.urls)),
     (r'^logged-in/$', 'testApi.views.user_creds'),
     (r'^auth/$', 'testApi.views.auth_approved'),
+    (r'^avatar/', include('avatar.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns = patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    ) + urlpatterns

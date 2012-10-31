@@ -7,7 +7,7 @@ angular.module('tastypieModule', ['ngResource']).
         delete $http.defaults.headers.common['X-Requested-With'];
         
         var apiCall = $resource('http://192.168.91.20/api/v1/:type',
-            {type: 'food', username: '@userName', api_key: '@api_key'},
+            {type: '@type', username: '@userName', api_key: '@api_key', user: '@userID'},
             {
                 get: {method: 'GET'},
                 post: {method: 'POST', headers: {'Content-Type': 'application/json'}}

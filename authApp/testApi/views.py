@@ -8,7 +8,7 @@ from tastypie.models import ApiKey
 def user_creds(request):
     loggedUser = request.user
     userApiKey = ApiKey.objects.get(user=request.user)
-    redirectUrl = '/auth/?username="%s"&api_key="%s"' % (loggedUser, userApiKey.key)
+    redirectUrl = '/auth/?username=%s&api_key=%s&user=%s/' % (loggedUser, userApiKey.key, loggedUser.pk)
 
     return redirect(redirectUrl)
 

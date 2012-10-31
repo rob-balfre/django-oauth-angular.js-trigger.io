@@ -9,8 +9,15 @@
 <body ng-controller="MainAppCtrl">
     
     <div ng-view></div>
-        
-        
+    
+    <nav>
+        <ul>
+            <li><a href="/#user"><img src="http://192.168.91.20{{ twitterAvatar.objects[0].avatar }}" width="30"></a></li>
+            <li><a href="/#list"><img src="static/img/food-icon.png" width="30"></a></li>
+            <li><a href="/#add">Add</a></li>
+        <ul>
+    </nav>
+            
     <script src="static/angular/lib/angular.js"></script>
     <script src="static/angular/lib/angular-resource.js"></script>
     <script src="static/jquery/lib/jquery-latest.js"></script>

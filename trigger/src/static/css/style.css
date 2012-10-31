@@ -1,1 +1,58 @@
-html,body{background:#333;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;text-align:center;color:#fff}a{color:#fff;text-decoration:none}.sign-in-container{margin:0 auto;height:450px;width:100%;text-align:center}.sign-in-container h1{display:block;width:100%}.box{margin:0 auto;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-pack:center;-webkit-box-align:center}.sign-in-option{width:90px;height:90px}#twitter-sign-in{background:#2daae1}
+html,
+body {
+  background: #333;
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+  text-align: center;
+  color: #fff;
+}
+ul {
+  list-style: none;
+  margin: 0;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.sign-in-container {
+  margin: 0 auto;
+  height: 450px;
+  width: 100%;
+  text-align: center;
+}
+.sign-in-container h1 {
+  display: block;
+  width: 100%;
+}
+.box {
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+.sign-in-option {
+  width: 90px;
+  height: 90px;
+}
+#twitter-sign-in {
+  background: #2daae1;
+}
+nav {
+  width: 100%;
+  position: fixed;
+  height: 50px;
+  line-height: 50px;
+  bottom: 0;
+  background: #000;
+}
+nav li {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+}
+nav a {
+  display: block;
+}
+nav img {
+  vertical-align: middle;
+}

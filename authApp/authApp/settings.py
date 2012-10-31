@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.twitter',
     'tastypie',
+    'avatar',
     'authApp',
     'testApi',
 )
@@ -129,6 +130,7 @@ XS_SHARING_ALLOWED_ORIGINS = '*'
 XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
 XS_SHARING_ALLOWED_HEADERS = ['Content-Type']
 XS_SHARING_ALLOWED_CREDENTIALS = 'true'
+SOCIALACCOUNT_AVATAR_SUPPORT = 'avatar'
 
 LOGIN_REDIRECT_URL = '/logged-in'
 

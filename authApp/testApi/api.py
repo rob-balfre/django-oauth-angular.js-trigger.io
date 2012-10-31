@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from avatar.models import Avatar
 from tastypie import fields
 from tastypie.resources import ModelResource
 from testApi.models import FoodOption, Vote
@@ -15,6 +16,19 @@ class UserResource(ModelResource):
         authorization = Authorization()
         trailing_slash = False
         fields = ['username','id']
+        
+class AvatarResource(ModelResource):
+    user = fields.ForeignKey(UserResource, 'user', full=True)
+    
+    class Meta:
+        queryset = Avatar.objects.all()
+        resource_name = 'avatar'
+        serializer = Serializer(formats=['jsonp', 'json'])
+        authorization = Authorization()
+        trailing_slash = False
+        filtering = {
+            "user": ('exact'),
+        }
 
 class FoodResource(ModelResource):
     class Meta:

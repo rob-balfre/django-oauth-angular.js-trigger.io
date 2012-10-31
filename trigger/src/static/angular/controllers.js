@@ -1,12 +1,28 @@
 'use strict';
 
+function getURLParameter(name, url) {
+    console.log(name);
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(url)||[,null])[1]
+    );
+}
+
+app.controller('MainAppCtrl', function($scope, $rootScope, $location, apiCall) {
+    $rootScope.$on('event:auth-loginRequired', function(){
+          $location.path('/');
+    });
+    
+    $scope.twitterAvatar = apiCall.get({type: 'avatar', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey"), user: localStorage.getItem("userID")});
+
+});
+
 function HomeCrtl($scope, $location) {
     //check for connecton 
     var online = navigator.onLine;
     
     //if connected attempt to login
     if (online === true) {
-        $location.path('/sign-in');
+        $location.path('/user');
     
     //else show connection error
     } else {
@@ -24,36 +40,48 @@ function SiginInCtrl($scope, $location, apiCall) {
         //}, function (data) {
             //forge.logging.log(data.url);
             //$scope.$apply(function() {
+                var theURL = 'http://192.168.91.20/auth/?username=lolcharr&api_key=f94bb5bf3f6a7e645c4191f749fd930c2a8f2f85&user=3';
+                //var theURL = data.url;
+                localStorage.setItem("userID", getURLParameter('user', theURL));
+                localStorage.setItem("username", getURLParameter('username', theURL));
+                localStorage.setItem("apiKey", getURLParameter('api_key', theURL));
                 $location.path('/list');
-                localStorage.setItem("username", "rob_balfre");
-                localStorage.setItem("apiKey", "58ce21171b76da7755a7353313160867aeda1311");
-                
-                //loggedUser = 'rob_balfre';
-                //apiKey = '58ce21171b76da7755a7353313160867aeda1311';
+
             //});
         //}); 
     }
 };
 
-function ListCtrl($rootScope, $scope, $http, $location, apiCall) {
-    $scope.food_options =  apiCall.get({username: localStorage.getItem("username")});
+function ListCtrl($rootScope, $scope, $location, apiCall) {
+    function getFoodOptions() {
+        $scope.food_options =  apiCall.get({type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
+    }
+    
+    getFoodOptions();
     
     $scope.testApi = function () {
-        apiCall.get({username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
+        $scope.food_options = apiCall.get({type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
     }
     
     $scope.addNew = function() {
         $location.path('/new');
     }
     
-    $scope.sendVote = function (foodID) {
-        apiCall.post({type: 'vote', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")}, {'food_option': {'id': foodID}, 'user': {'username': localStorage.getItem("username")}});
-    }
-    
+    $scope.attemptVote = function () {
+        apiCall.post(
+            {type: 'vote', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")}, 
+            {'food_option': {'id': this.food_option.id }, 'user': {'username': localStorage.getItem("username")}}, 
+            function() {
+                getFoodOptions();
+            });
+    };
 };
 
-function CreateCtrl($scope, $http, apiCall){
+function CreateCtrl($scope, $http, $location, apiCall){
     $scope.addOption = function() {
-        apiCall.post({username: loggedUser}, {'name':$scope.optionText});
+        apiCall.post({username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")}, {'name':$scope.optionText, 'votes':0}, 
+        function() {
+                $location.path('/list');
+            });
     }
 }
