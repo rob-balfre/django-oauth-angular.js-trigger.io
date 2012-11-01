@@ -34,30 +34,32 @@ function HomeCrtl($scope, $location) {
 
 function SiginInCtrl($scope, $location, apiCall) {
     $scope.twitterSignIn = function() {
-        //forge.tabs.openWithOptions({
-          //  url: 'http://192.168.91.20/accounts/twitter/login/',
-        //    pattern: 'http://192.168.91.20/auth/*'
-        //}, function (data) {
-            //forge.logging.log(data.url);
-            //$scope.$apply(function() {
-                var theURL = 'http://192.168.91.20/auth/?username=lolcharr&api_key=f94bb5bf3f6a7e645c4191f749fd930c2a8f2f85&user=3';
-                //var theURL = data.url;
+        forge.tabs.openWithOptions({
+            url: 'http://192.168.91.20/accounts/twitter/login/',
+            pattern: 'http://192.168.91.20/auth/*'
+            }, function (data) {
+            forge.logging.log(data.url);
+            $scope.$apply(function() {
+                //var theURL = 'http://192.168.91.20/auth/?username=lolcharr&api_key=f94bb5bf3f6a7e645c4191f749fd930c2a8f2f85&user=3';
+                var theURL = data.url;
                 localStorage.setItem("userID", getURLParameter('user', theURL));
                 localStorage.setItem("username", getURLParameter('username', theURL));
                 localStorage.setItem("apiKey", getURLParameter('api_key', theURL));
                 $location.path('/list');
 
-            //});
-        //}); 
+            });
+        }); 
     }
 };
 
 function ListCtrl($rootScope, $scope, $location, apiCall) {
     function getFoodOptions() {
         $scope.food_options =  apiCall.get({type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
+        $scope.current_vote = apiCall.get({type: 'vote', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey"), user: localStorage.getItem("userID")});
     }
-    
+        
     getFoodOptions();
+
     
     $scope.testApi = function () {
         $scope.food_options = apiCall.get({type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
@@ -75,11 +77,20 @@ function ListCtrl($rootScope, $scope, $location, apiCall) {
                 getFoodOptions();
             });
     };
+    
+    $scope.refresh = function () {
+        getFoodOptions();
+    }
+    
 };
 
-function CreateCtrl($scope, $http, $location, apiCall){
+function CreateCtrl($scope, $location, apiCall){
+    $scope.food_options =  apiCall.get({type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")});
+    
     $scope.addOption = function() {
-        apiCall.post({username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey")}, {'name':$scope.optionText, 'votes':0}, 
+        apiCall.post(
+            {type: 'food', username: localStorage.getItem("username"), api_key: localStorage.getItem("apiKey"),  user: localStorage.getItem("userID")},
+            {'name': $scope.optionText, 'votes': 0 }, 
         function() {
                 $location.path('/list');
             });

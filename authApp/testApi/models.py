@@ -10,6 +10,9 @@ class FoodOption(models.Model):
     name = models.CharField(max_length=30)
     votes = models.IntegerField()
     
+    class Meta:
+        ordering = ['-votes']
+    
     def __unicode__(self):
         return self.name
 

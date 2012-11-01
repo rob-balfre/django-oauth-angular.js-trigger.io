@@ -10,7 +10,7 @@ angular.module('tastypieModule', ['ngResource']).
             {type: 'food', username: 'rob_balfre', api_key: '58ce21171b76da7755a7353313160867aeda1311'},
             {
                 get: {method: 'GET'},
-                //update: {method: 'POST', params: { withCredentials: true, action: 'create', format: 'json' }, headers: {'Content-Type': 'application/json', 'dataType': 'application/json'}}
+                update: {method: 'POST', params: { withCredentials: true, action: 'create', format: 'json' }, headers: {'Content-Type': 'application/json', 'dataType': 'application/json'}}
             }
         );
         

@@ -17,6 +17,12 @@ locations = {
 	'reload': 'development/reload/src',
 }
 
+def validate_user_source(src='src'):
+	'''Check for any issues with the user source, i.e. no where to include all.js'''
+	return [
+		{'do': {'check_index_html': (src,)}}
+	]
+
 def copy_user_source_to_tempdir(ignore_patterns=None, tempdir=None):
 	return [
 		{'do': {'copy_files': {'from': 'src', 'to': tempdir, 'ignore_patterns': ignore_patterns}}},

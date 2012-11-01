@@ -1,5 +1,4 @@
 from lib import predicate
-import sys
 
 @predicate
 def is_external(build):
@@ -79,6 +78,9 @@ def config_property_exists(build, property):
 		else:
 			return False
 	return True
+@predicate
+def config_property_does_not_exist(build, property):
+	return not config_property_exists(build, property)
 
 @predicate
 def config_property_true(build, property):

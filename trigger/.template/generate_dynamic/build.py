@@ -338,6 +338,10 @@ class Build(object):
 						
 		self.log.debug('{0} has finished'.format(self))
 	
+	def run_task(self, task, args):
+		task_method = self.tasks[task]
+		self._call_with_params(task_method, args)
+	
 	def __repr__(self):
 		return '<ForgeTask ({0})>'.format(", ".join(self.enabled_platforms))
 

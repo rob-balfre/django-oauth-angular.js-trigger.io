@@ -1,13 +1,12 @@
-angular.module('fff', ['tastypieModule']).
-  config(function($routeProvider) {
+angular.module('fff', ['tastypieModule']).config(function($routeProvider) { 
     $routeProvider.
-      when('/', {controller:HomeCrtl, templateUrl:'home.html'}).
-      when('/sign-in', {controller:SiginInCtrl, templateUrl:'sign-in.html'}).
-      when('/no-connection', {templateUrl:'no-connection.html'}).
-      when('/list', {controller:ListCtrl, templateUrl:'list.html'}).
-      when('/new', {controller:CreateCtrl, templateUrl:'add_option.html'}).
-      otherwise({redirectTo:'/'});
-  });
+        when('/', {controller:HomeCrtl, templateUrl:'home.html'}).
+        when('/sign-in', {controller:SiginInCtrl, templateUrl:'sign-in.html'}).
+        when('/no-connection', {templateUrl:'no-connection.html'}).
+        when('/list', {controller:ListCtrl, templateUrl:'list.html'}).
+        when('/new', {controller:CreateCtrl, templateUrl:'add_option.html'}).
+        otherwise({redirectTo:'/'});
+    });
 
 function HomeCrtl($scope, $location) {
     //check for connecton 
@@ -32,7 +31,7 @@ function SiginInCtrl($scope, $location, apiCall) {
             //forge.logging.log(data.url);
             //$scope.$apply(function() {
                 $location.path('/list');
-               // FoodOptions.userCreds = data.url;
+                apiCall.userCreds = data.url;
             //});
         //}); 
     }

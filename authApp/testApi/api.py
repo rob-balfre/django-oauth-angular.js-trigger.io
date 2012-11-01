@@ -14,6 +14,7 @@ class UserResource(ModelResource):
         resource_name = 'user'
         serializer = Serializer(formats=['jsonp', 'json'])
         authorization = Authorization()
+        authentication = ApiKeyAuthentication()
         trailing_slash = False
         fields = ['username','id']
         
@@ -25,6 +26,7 @@ class AvatarResource(ModelResource):
         resource_name = 'avatar'
         serializer = Serializer(formats=['jsonp', 'json'])
         authorization = Authorization()
+        authentication = ApiKeyAuthentication()
         trailing_slash = False
         filtering = {
             "user": ('exact'),
@@ -36,7 +38,7 @@ class FoodResource(ModelResource):
         resource_name = 'food'
         serializer = Serializer(formats=['jsonp', 'json'])
         authorization = Authorization()
-        #authentication = ApiKeyAuthentication()
+        authentication = ApiKeyAuthentication()
         trailing_slash = False
 
 class VoteResource(ModelResource):
@@ -46,10 +48,11 @@ class VoteResource(ModelResource):
     class Meta:
         queryset = Vote.objects.all()
         filtering = {
-            "food_option": ('exact')
+            "food_option": ('exact'),
+            "user": ('exact'),
         }
         resource_name = 'vote'
         serializer = Serializer(formats=['jsonp', 'json'])
         authorization = Authorization()
-        #authentication = ApiKeyAuthentication()
+        authentication = ApiKeyAuthentication()
         trailing_slash = False

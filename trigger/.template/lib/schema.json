@@ -76,14 +76,12 @@
 			"additionalProperties": {
 				"type": "object",
 				"properties": {
-					"android": {
+					"hash": {
 						"type": "string",
-						"pattern": "^.*\\.jar$",
-						"required": false
+						"required": true
 					},
-					"ios": {
-						"type": "string",
-						"pattern": "^.*\\.a$",
+					"config": {
+						"type": "object",
 						"required": false
 					}
 				}
@@ -298,6 +296,22 @@
 					"_docs": "http://docs.trigger.io/en/v1.4/modules/file.html",
 					"description": "Handle access to files via the local filesystem, caching remote files or using a camera or gallery to capture images.",
 					"type": "boolean"
+				},
+				"flurry": {
+					"required": false,
+					"_docs": "http://docs.trigger.io/en/v1.4/modules/flurry.html",
+					"description": "Track usage of your app with Flurry.",
+					"type": "object",
+					"properties": {
+						"android_api_key": {
+							"required": false,
+							"type": "string"
+						},
+						"ios_api_key": {
+							"required": false,
+							"type": "string"
+						}
+					}
 				},
 				"geolocation": {
 					"required": false,

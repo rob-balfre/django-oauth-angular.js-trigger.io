@@ -292,6 +292,10 @@ def set_in_biplist(build, filename, key, value):
 		biplist.writePlist(plist, found_file)
 
 @task
+def set_in_info_plist(build, key, value):
+	set_in_biplist(build, "ios/ForgeTemplate/ForgeTemplate/ForgeTemplate-Info.plist", key, value)
+
+@task
 def set_in_json(build, filename, key, value):
 	if isinstance(value, str):
 		value = utils.render_string(build.config, value)
@@ -473,3 +477,15 @@ def generate_sha1_manifest(build, input_folder, output_file):
 					hash = hashlib.sha1(file.read()).hexdigest()
 					manifest[hash]  = filename[len(input_folder)+1:].replace('\\','/')
 		json.dump(manifest, out)
+
+@task
+def check_index_html(build, src='src'):
+	index_path = os.path.join(src, 'index.html')
+	if not os.path.isfile(index_path):
+		raise Exception("Missing index.html in source directory, index.html is required by Forge.")
+
+	with open(index_path) as index_file:
+		index_html = index_file.read()
+
+		if index_html.find("<head>") == -1:
+			raise Exception("index.html does not contain '<head>', this is required to add the Forge javascript library.")

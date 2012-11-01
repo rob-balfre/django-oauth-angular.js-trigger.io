@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html ng-app="fff">
 <head><script src='../forge/all.js'></script>
-<title>JPC FFF</title>
-<!-- Bootstrap -->
-<link href="static/css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>JPC FFF</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="static/css/lib/normalize.css" rel="stylesheet">
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="static/css/style.css" rel="stylesheet">
 </head>
 
-<body ng-view>
+<body ng-controller="MainAppCtrl">
+    
+    <header>
+        <img src="static/img/food-icon.png" width="30">
+    </header>
     
     <div ng-view></div>
-        
-        
+    
+    <nav>
+        <ul>
+            <li><a href="#/user"><i class="icon-user icon-white"></i><!-- <img src="http://192.168.91.20{{ twitterAvatar.objects[0].avatar }}" width="30">--></a></li>
+            <li><a href="#/list"><i class="icon-ok icon-white"></i></a></li>
+            <li><a href="#/add"><i class="icon-plus-sign icon-white"></i></a></li>
+        <ul>
+    </nav>
+            
     <script src="static/angular/lib/angular.js"></script>
     <script src="static/angular/lib/angular-resource.js"></script>
     <script src="static/jquery/lib/jquery-latest.js"></script>
-    <script src="static/angular/fff.js"></script>
-    <script src="static/angular/tastypie.js"></script>
+    <script src="static/angular/lib/http-auth-interceptor.js"></script>
+    <script src="static/angular/app.js"></script>
+    <script src="static/angular/controllers.js"></script>
+    <script src="static/angular/services.js"></script>
+
   </body>
 </html>

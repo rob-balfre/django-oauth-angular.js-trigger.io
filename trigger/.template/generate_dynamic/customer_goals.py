@@ -46,10 +46,12 @@ def generate_app_from_template(generate_module, build_to_run):
 		os.rmdir(tempdir)
 		build_to_run.add_steps(generate_module.customer_phases.copy_user_source_to_tempdir(ignore_patterns=build_to_run.ignore_patterns, tempdir=tempdir))
 		build_to_run.add_steps(generate_module.customer_phases.run_hook(hook='prebuild', dir=tempdir))
+		build_to_run.add_steps(generate_module.customer_phases.validate_user_source(src=tempdir))
 		build_to_run.add_steps(generate_module.customer_phases.copy_user_source_to_template(ignore_patterns=build_to_run.ignore_patterns, src=tempdir))
 		# Delete temp dir
 		build_to_run.add_steps(generate_module.customer_phases.delete_tempdir(tempdir=tempdir))
 	else:
+		build_to_run.add_steps(generate_module.customer_phases.validate_user_source())
 		build_to_run.add_steps(generate_module.customer_phases.copy_user_source_to_template(ignore_patterns=build_to_run.ignore_patterns))
 	build_to_run.add_steps(generate_module.customer_phases.include_platform_in_html())
 	build_to_run.add_steps(generate_module.customer_phases.include_name())
