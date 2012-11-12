@@ -527,6 +527,10 @@
 							"type": "string",
 							"dependencies": "android",
 							"_filepicker": true
+						},
+						"hide-manually": {
+							"required": false,
+							"type": "boolean"
 						}
 					}
 				},
@@ -716,6 +720,12 @@
 					"_docs": "http://docs.trigger.io/en/v1.4/modules/tabbar.html",
 					"description": "Add a fixed tab navigation bar to the bottom of your app.",
 					"type": "boolean"
+				},
+				"ui": {
+					"required": false,
+					"type": "boolean",
+					"description": "Miscellaneous native UI enhancements",
+					"_docs": "http://docs.trigger.io/en/v1.4/modules/ui.html"
 				},
 				"update_url": {
 					"required": false, 

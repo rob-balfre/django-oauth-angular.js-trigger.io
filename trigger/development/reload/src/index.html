@@ -26,19 +26,19 @@
     </header>
     
     <div ng-view></div>
+<!-- <img src="http://192.168.91.20{{ twitterAvatar.objects[0].avatar }}" width="30"> -->
     
-    <nav>
+    <nav ng-controller="tabCtrl">
         <ul>
-            <li><a href="#/user"><i class="icon-user icon-white"></i><!-- <img src="http://192.168.91.20{{ twitterAvatar.objects[0].avatar }}" width="30">--></a></li>
-            <li><a href="#/list"><i class="icon-ok icon-white"></i></a></li>
-            <li><a href="#/add"><i class="icon-plus-sign icon-white"></i></a></li>
+            <li ng-class="{active:isActive('/user')}"><a href="#/user"><i class="icon-user icon-white"></i></a></li>
+            <li ng-class="{active:isActive('/list')}"><a href="#/list"><i class="icon-ok icon-white"></i></a></li>
+            <li ng-class="{active:isActive('/add')}"><a href="#/add"><i class="icon-plus-sign icon-white"></i></a></li>
         <ul>
     </nav>
             
     <script src="static/angular/lib/angular.js"></script>
     <script src="static/angular/lib/angular-resource.js"></script>
     <script src="static/jquery/lib/jquery-latest.js"></script>
-    <script src="static/angular/lib/http-auth-interceptor.js"></script>
     <script src="static/angular/app.js"></script>
     <script src="static/angular/controllers.js"></script>
     <script src="static/angular/services.js"></script>

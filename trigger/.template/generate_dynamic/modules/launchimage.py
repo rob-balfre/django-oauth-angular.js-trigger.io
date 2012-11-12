@@ -8,6 +8,13 @@ _icon_path_for_customer = {
 	"wp": "development/wp/dist/"
 }
 
+def create_all_js(build):
+	return [
+		{'do': {'add_to_all_js': 'common-v2/modules/launchimage/default.js'}},
+		{'when': {'config_property_false_or_missing': 'modules.launchimage.hide-manually'},
+			'do': {'add_to_all_js': 'common-v2/modules/launchimage/auto_hide.js'}},
+	]
+
 def customer_phase(build):
 	icon_path = _icon_path_for_customer
 	def icon(platform, sub_path):

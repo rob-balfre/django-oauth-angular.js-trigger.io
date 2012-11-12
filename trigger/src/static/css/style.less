@@ -87,20 +87,21 @@ nav {
     }
     
     a {
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
         display: block;
+        opacity: .5;
     }
     
     li.active a {
-        background: rgba(255,255,255,0.05)
-    }
-    
-    img {
-        vertical-align: middle;
+        opacity: 1;
+        background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #000), color-stop(1, #222));
     }
 }
 
 #food-options {
     margin: 0 auto;
+    padding: 0 0 5em;
     border-radius: 5px;
     background: #f5f5f5;
     border-top: 1px solid #dcdcdc;

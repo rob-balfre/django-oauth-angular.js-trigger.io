@@ -25,7 +25,6 @@ class Vote(models.Model):
 
 def add_vote(sender, **kwargs):
     obj = kwargs['instance']
-    print 'hi ya!'
     obj.food_option.votes = Vote.objects.filter(food_option=obj.food_option).count()
     obj.food_option.save()
     

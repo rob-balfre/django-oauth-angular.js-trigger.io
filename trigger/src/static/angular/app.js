@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('fff', ['http-auth-interceptor','tastypieModule'])
+var app = angular.module('fff', ['tastypieModule'])
     .config(function($routeProvider) { $routeProvider.
         when('/', {controller:HomeCrtl, templateUrl:'partials/home.html'}).
         when('/user', {controller:SiginInCtrl, templateUrl:'partials/sign-in.html'}).

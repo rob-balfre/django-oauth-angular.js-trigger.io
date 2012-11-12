@@ -2,10 +2,10 @@
   "general": {
   },
   "ios": {
-    "device": "device",
+    "device": "simulator",
     "profiles": {
       "DEFAULT": {
-        "provisioning_profile": "/Users/robertbalfre/webdev/django-oauth-angular.js-trigger.io/trigger/iOS_Team_Provisioning_Profile_.mobileprovision"
+       
       },
       "release": {
       }
